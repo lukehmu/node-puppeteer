@@ -31,7 +31,7 @@ app.post('/api/pdf', (req, res) => {
       processHTML(htmlURL)
         .then((data) => {
           const pdf = data
-          // console.log(pdf)
+          console.log(pdf)
           res.sendFile(path.join(__dirname, pdf))
         })
       break
