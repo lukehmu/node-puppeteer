@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 
 async function processHTML(htmlURL) {
   const fileName = `${Date.now().toString()}.pdf`
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
   await page.pdf({ path: fileName })
