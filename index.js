@@ -29,8 +29,8 @@ app.post('/api/pdf', (req, res) => {
     case 'puppeteer':
       console.log('puppteer')
       processHTML(htmlURL)
-        .then((data) => {
-          const pdf = data
+        .then((pdf) => {
+          // const pdf = data
           console.log(pdf)
           res.sendFile(path.join(__dirname, pdf))
         })
@@ -38,6 +38,10 @@ app.post('/api/pdf', (req, res) => {
     default:
       res.send('No renderer found')
   }
+})
+
+app.get('/api/pdf', (req, res) => {
+  res.send('API docs')
 })
 
 app.listen(port, () => console.log(`Running on http://localhost:${port}!`))
