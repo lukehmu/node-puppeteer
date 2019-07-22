@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const puppeteer = require('puppeteer')
 const path = require('path')
 
+const pdfDir = 'pdf'
+
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,9 +17,9 @@ async function processHTML(htmlURL) {
   const fileName = `${Date.now().toString()}.pdf`
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
-  await page.goto(htmlURL)
-  await page.pdf({ path: fileName })
-  // console.log(fileName)
+  const pageRequest = await page.goto(htmlURL)
+  console.log(`after${pageRequest}`)
+  await page.pdf({ path: `${pdfDir}/${fileName}` })
   return fileName
 }
 
@@ -30,9 +32,11 @@ app.post('/api/pdf', (req, res) => {
       console.log('puppteer')
       processHTML(htmlURL)
         .then((pdf) => {
-          // const pdf = data
-          console.log(pdf)
-          res.sendFile(path.join(__dirname, pdf))
+          console.log('HI HI')
+          res.sendFile(path.join(__dirname, pdfDir, pdf))
+        })
+        .catch((err) => {
+          res.send(err)
         })
       break
     default:
