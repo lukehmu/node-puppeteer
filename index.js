@@ -18,7 +18,6 @@ async function processHTML(htmlURL) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   const pageRequest = await page.goto(htmlURL)
-  console.log(`after${pageRequest}`)
   await page.pdf({ path: `${pdfDir}/${fileName}` })
   return fileName
 }
@@ -29,14 +28,16 @@ app.post('/api/pdf', (req, res) => {
   const { renderer } = body
   switch (renderer) {
     case 'puppeteer':
-      console.log('puppteer')
+      console.log(`Rendering engine: ${renderer}`)
       processHTML(htmlURL)
         .then((pdf) => {
-          console.log('HI HI')
           res.sendFile(path.join(__dirname, pdfDir, pdf))
         })
         .catch((err) => {
-          res.send(err)
+          res.send({
+            error: err.message,
+            badURL: htmlURL,
+          })
         })
       break
     default:
