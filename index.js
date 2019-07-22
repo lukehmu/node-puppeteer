@@ -11,6 +11,7 @@ app.use(
   }),
 )
 const port = process.env.PORT || 3000
+const htmlIndex = path.join(__dirname, 'index.html')
 
 app.post('/api/pdf', (req, res) => {
   const { body } = req
@@ -31,7 +32,7 @@ app.post('/api/pdf', (req, res) => {
 })
 
 app.get('/api/pdf', (req, res) => {
-  res.send('API docs')
+  res.sendFile(htmlIndex)
 })
 
 app.listen(port, () => console.log(`Running on http://localhost:${port}!`))

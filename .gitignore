@@ -89,3 +89,6 @@ typings/
 
 # Created PDFs
 pdf/*
+
+# dist folder
+dist/*
