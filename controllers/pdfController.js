@@ -78,8 +78,21 @@ async function generatePDF(req, res) {
   return pdfFileName
 }
 
-module.exports.generatePDF = generatePDF
+function getPDF(req, res) {
+  const pdfQuery = req.query.pdf
+  if (pdfQuery) {
+    res.sendFile(path.join(process.cwd(), pdfDir, pdfQuery), (err) => {
+      if (err) {
+        res.status(404).json({
+          message: 'Cannot find your file',
+          suppliedFilename: pdfQuery,
+        })
+      }
+    })
+  } else {
+    res.status(200).json({ message: 'Please use ?pdf=filename to retrieve a PDF' })
+  }
+}
 
-// exports.logIt = function logIt(req, res) {
-//     res.send('NOT IMPLEMENTED: logIt')
-//   }
+module.exports.generatePDF = generatePDF
+module.exports.getPDF = getPDF
