@@ -1,6 +1,7 @@
 const path = require('path')
 const puppeteer = require('puppeteer')
 const phantom = require('phantom')
+const s3Controller = require('./s3Controller.js')
 
 const pdfDir = 'pdf'
 
@@ -47,7 +48,10 @@ async function generatePDF(req, res) {
       await puppeteerPDF(htmlURL, pdfFileName)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
-          res.sendFile(pdf)
+          s3Controller.uploadThePDF(pdf)
+          console.log(`damn${s3Controller.uploadThePDF(pdf)}`)
+          // console.log(`got s3 url ${s3URL}`)
+          // res.redirect(s3URL)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)

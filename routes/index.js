@@ -1,8 +1,13 @@
 const routes = require('express').Router()
 const pdfController = require('../controllers/pdfController.js')
+const s3Controller = require('../controllers/s3Controller.js')
 
 routes.get('/api/pdf', (req, res) => {
   pdfController.getPDF(req, res)
+})
+
+routes.get('/api/uploadpdf', (req, res) => {
+  s3Controller.uploadFile(req, res)
 })
 
 routes.post('/api/pdf', (req, res) => {
