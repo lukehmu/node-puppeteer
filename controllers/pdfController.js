@@ -54,6 +54,7 @@ async function generatePDF(req, res) {
           res.send({
             error: err.message,
             submittedURL: htmlURL,
+            submittedRenderer: renderer,
           })
         })
       break
@@ -61,19 +62,23 @@ async function generatePDF(req, res) {
       await phantomPDF(htmlURL, pdfFileName)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
-          res.sendFile(pdf)
+          res.status(201).sendFile(pdf)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
-          res.send({
+          res.status(400).send({
             error: err.message,
             submittedURL: htmlURL,
+            submittedRenderer: renderer,
           })
         })
       break
     default:
-      console.log('No renderer found')
-      throw Error('No renderer found')
+      res.status(400).send({
+        error: 'No renderer found',
+        submittedURL: htmlURL,
+        submittedRenderer: renderer,
+      })
   }
   return pdfFileName
 }
@@ -90,7 +95,7 @@ function getPDF(req, res) {
       }
     })
   } else {
-    res.status(200).json({ message: 'Please use ?pdf=filename to retrieve a PDF' })
+    res.status(400).json({ message: 'Please use ?pdf=filename to retrieve a PDF' })
   }
 }
 
