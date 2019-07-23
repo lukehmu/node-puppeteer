@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node app.js",
+    "dev-server": "nodemon ./app.js",
     "build": "rm -rf dist && webpack-cli --mode development"
   },
   "author": "",
@@ -19,7 +20,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "phantom": "^6.2.0",
-    "puppeteer": "^1.18.1"
+    "puppeteer": "^1.19.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -30,6 +31,7 @@
     "eslint-plugin-import": "^2.18.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.19.1",
     "standard": "^13.1.0",
     "stylelint": "^9.4.0",
     "webpack": "^4.36.1",
