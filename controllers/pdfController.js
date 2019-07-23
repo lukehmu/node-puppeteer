@@ -6,7 +6,8 @@ const pdfDir = 'pdf'
 
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
-  const fullPath = path.join(__dirname, pdfDir, fileName)
+  const fullPath = path.join(process.cwd(), pdfDir, fileName)
+  console.log(fullPath)
   return fullPath
 }
 
@@ -36,27 +37,38 @@ async function phantomPDF(htmlURL, pdfFileName) {
   return pdfFileName
 }
 
-async function generatePDF(htmlURL, renderer) {
+async function generatePDF(req, res) {
   const pdfFileName = generateTimeStampFileName()
+  const { body } = req
+  const { htmlURL } = body
+  const { renderer } = body
   switch (renderer) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, pdfFileName)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
+          res.sendFile(pdf)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
-          throw err
+          res.send({
+            error: err.message,
+            submittedURL: htmlURL,
+          })
         })
       break
     case 'phantom':
       await phantomPDF(htmlURL, pdfFileName)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
+          res.sendFile(pdf)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
-          throw err
+          res.send({
+            error: err.message,
+            submittedURL: htmlURL,
+          })
         })
       break
     default:
@@ -67,3 +79,7 @@ async function generatePDF(htmlURL, renderer) {
 }
 
 module.exports.generatePDF = generatePDF
+
+// exports.logIt = function logIt(req, res) {
+//     res.send('NOT IMPLEMENTED: logIt')
+//   }
