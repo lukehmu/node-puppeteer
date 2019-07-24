@@ -6,16 +6,22 @@ const pdfDir = 'pdf'
 
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
-  const fullPath = path.join(process.cwd(), pdfDir, fileName)
+  const fullPath = path.join(global.appRoot, pdfDir, fileName)
   console.log(fullPath)
   return fullPath
 }
 
-async function puppeteerPDF(htmlURL, pdfFileName) {
+async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
-  await page.pdf({ path: pdfFileName })
+  await page.pdf({
+    path: pdfFileName,
+    format,
+    printBackground: true,
+    width,
+    height,
+  })
   await console.log('Puppeteer PDF created')
   return pdfFileName
 }
@@ -42,9 +48,12 @@ async function generatePDF(req, res) {
   const { body } = req
   const { htmlURL } = body
   const { renderer } = body
+  const { format } = body
+  const { width } = body
+  const { height } = body
   switch (renderer) {
     case 'puppeteer':
-      await puppeteerPDF(htmlURL, pdfFileName)
+      await puppeteerPDF(htmlURL, pdfFileName, format, width, height)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
           res.sendFile(pdf)
@@ -86,7 +95,7 @@ async function generatePDF(req, res) {
 function getPDF(req, res) {
   const pdfQuery = req.query.pdf
   if (pdfQuery) {
-    res.sendFile(path.join(process.cwd(), pdfDir, pdfQuery), (err) => {
+    res.sendFile(path.join(global.appRoot, pdfDir, pdfQuery), (err) => {
       if (err) {
         res.status(404).json({
           message: 'Cannot find your file',
