@@ -1,6 +1,7 @@
 const path = require('path')
 const puppeteer = require('puppeteer')
 const phantom = require('phantom')
+require('dotenv').config()
 
 const pdfDir = 'pdf'
 
@@ -51,6 +52,19 @@ async function generatePDF(req, res) {
   const { format } = body
   const { width } = body
   const { height } = body
+  const { apiKey } = body
+  if (!apiKey) {
+    console.log('Invalid API KEY')
+    res.status(403).json({
+      message: 'No API key provided',
+    })
+  } else if (apiKey !== process.env.APIKEY) {
+    console.log(apiKey)
+    console.log(process.env.APIKEY)
+    res.status(403).json({
+      message: 'Invalid API KEY',
+    })
+  }
   switch (renderer) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, pdfFileName, format, width, height)
