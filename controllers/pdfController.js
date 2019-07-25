@@ -16,7 +16,7 @@ async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
-  await page.pdf({
+  const buffer = await page.pdf({
     path: pdfFileName,
     format,
     printBackground: true,
@@ -24,7 +24,7 @@ async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
     height,
   })
   await console.log('Puppeteer PDF created')
-  return pdfFileName
+  return buffer
 }
 
 async function phantomPDF(htmlURL, pdfFileName) {
@@ -70,7 +70,11 @@ async function generatePDF(req, res) {
       await puppeteerPDF(htmlURL, pdfFileName, format, width, height)
         .then((pdf) => {
           console.log(`PDF Promise fulfilled ${pdf}`)
-          res.sendFile(pdf)
+          // res.sendFile(pdf)
+          // res.setHeader()
+          res.set('Content-Type', 'application/pdf')
+          res.send(Buffer.from(pdf, 'binary'))
+          // res.attachment(pdf)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
