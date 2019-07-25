@@ -7,7 +7,7 @@ const pdfDir = 'pdf'
 
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
-  const fullPath = path.join(global.appRoot, pdfDir, fileName)
+  const fullPath = path.join(appRoot, pdfDir, fileName)
   console.log(fullPath)
   return fullPath
 }
@@ -23,7 +23,10 @@ function generateTimeStampFileName() {
  * @param height specify the height of the PDF
  */
 async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
   const page = await browser.newPage()
   await page.goto(htmlURL)
   const buffer = await page.pdf({
