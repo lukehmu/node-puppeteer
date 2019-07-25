@@ -12,6 +12,16 @@ function generateTimeStampFileName() {
   return fullPath
 }
 
+/**
+ * Creates a PDF for a given URL using Puppeteer and returns a binary file inside a buffer
+ *
+ * @async
+ * @param htmlURL a public URL to the HTML you wish to convert
+ * @param pdfFileName depricated
+ * @param format American standard paper sizes e.g. A4, A3. Prefer to use width and height
+ * @param width specify the width of the PDF
+ * @param height specify the height of the PDF
+ */
 async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
