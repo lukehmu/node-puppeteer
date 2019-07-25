@@ -17,7 +17,7 @@ async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
   const page = await browser.newPage()
   await page.goto(htmlURL)
   const buffer = await page.pdf({
-    path: pdfFileName,
+    // path: pdfFileName,
     format,
     printBackground: true,
     width,
@@ -69,7 +69,7 @@ async function generatePDF(req, res) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, pdfFileName, format, width, height)
         .then((pdf) => {
-          console.log(`PDF Promise fulfilled ${pdf}`)
+          console.log('PDF Promise fulfilled')
           // res.sendFile(pdf)
           // res.setHeader()
           res.set('Content-Type', 'application/pdf')
