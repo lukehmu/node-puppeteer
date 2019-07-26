@@ -1,10 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const path = require('path')
 const routes = require('./routes')
 
 // global.appRoot = path.resolve(__dirname)
-global.appRoot = path.dirname(require.main.filename)
 
 const app = express()
 app.use(bodyParser.json())

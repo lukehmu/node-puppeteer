@@ -7,9 +7,7 @@ const pdfDir = 'pdf'
 
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
-  const fullPath = path.join(global.appRoot, pdfDir, fileName)
-  console.log(fullPath)
-  return fullPath
+  return fileName
 }
 
 /**
@@ -22,7 +20,7 @@ function generateTimeStampFileName() {
  * @param width specify the width of the PDF
  * @param height specify the height of the PDF
  */
-async function puppeteerPDF(htmlURL, pdfFileName, format, width, height) {
+async function puppeteerPDF(htmlURL, format, width, height) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
@@ -58,32 +56,31 @@ async function generatePDF(req, res) {
   const pdfFileName = generateTimeStampFileName()
   const { body } = req
   const { htmlURL } = body
-  const { renderer } = body
   const { format } = body
   const { width } = body
   const { height } = body
-  const { apiKey } = body
-  if (!apiKey) {
+  if (!body.apiKey) {
     console.log('Invalid API KEY')
     res.status(403).json({
       message: 'No API key provided',
     })
-  } else if (apiKey !== process.env.APIKEY) {
-    console.log(apiKey)
+  } else if (body.apiKey !== process.env.APIKEY) {
+    console.log(body.apiKey)
     console.log(process.env.APIKEY)
     res.status(403).json({
       message: 'Invalid API KEY',
     })
   }
-  switch (renderer) {
+  switch (body.renderer) {
     case 'puppeteer':
-      await puppeteerPDF(htmlURL, pdfFileName, format, width, height)
+      await puppeteerPDF(htmlURL, format, width, height)
         .then((pdf) => {
           console.log('PDF Promise fulfilled')
           // res.sendFile(pdf)
           // res.setHeader()
           res.set('Content-Type', 'application/pdf')
-          res.send(Buffer.from(pdf, 'binary'))
+          res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`)
+          res.send(Buffer.from(pdf.toString(), 'binary'))
           // res.attachment(pdf)
         })
         .catch((err) => {
@@ -123,7 +120,7 @@ async function generatePDF(req, res) {
 function getPDF(req, res) {
   const pdfQuery = req.query.pdf
   if (pdfQuery) {
-    res.sendFile(path.join(global.appRoot, pdfDir, pdfQuery), (err) => {
+    res.sendFile(path.join(pdfDir, pdfQuery), (err) => {
       if (err) {
         res.status(404).json({
           message: 'Cannot find your file',
