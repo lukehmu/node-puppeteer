@@ -59,6 +59,7 @@ async function generatePDF(req, res) {
   const { format } = body
   const { width } = body
   const { height } = body
+  const { renderer } = body
   if (!body.apiKey) {
     console.log('Invalid API KEY')
     res.status(403).json({
@@ -71,7 +72,7 @@ async function generatePDF(req, res) {
       message: 'Invalid API KEY',
     })
   }
-  switch (body.renderer) {
+  switch (renderer) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, format, width, height)
         .then((pdf) => {
