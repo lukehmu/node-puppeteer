@@ -97,7 +97,7 @@ async function generatePDF(req, res) {
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
-          res.send({
+          res.status(400).send({
             errors: {
               error: err.message,
               submittedURL: htmlURL,
@@ -126,9 +126,11 @@ async function generatePDF(req, res) {
       break
     default:
       res.status(400).send({
-        error: 'No renderer found',
-        submittedURL: htmlURL,
-        submittedRenderer: renderer,
+        errors: {
+          error: 'No renderer found',
+          submittedURL: htmlURL,
+          submittedRenderer: renderer,
+        },
       })
   }
   return pdfFileName

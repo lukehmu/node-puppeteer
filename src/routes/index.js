@@ -13,7 +13,7 @@ passport.use(new Strategy(
     users.findByUsername(username, (err, user) => {
       if (err) { return cb(err) }
       if (!user) { return cb(null, false) }
-      if (user.password != password) { return cb(null, false) }
+      if (user.password !== password) { return cb(null, false) }
       return cb(null, user)
     })
   }),
