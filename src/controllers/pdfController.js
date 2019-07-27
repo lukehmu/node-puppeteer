@@ -92,15 +92,17 @@ async function generatePDF(req, res) {
           // res.setHeader()
           res.set('Content-Type', 'application/pdf')
           res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`)
-          res.send(Buffer.from(pdf.toString(), 'binary'))
+          res.status(201).send(Buffer.from(pdf.toString(), 'binary'))
           // res.attachment(pdf)
         })
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
           res.send({
-            error: err.message,
-            submittedURL: htmlURL,
-            submittedRenderer: renderer,
+            errors: {
+              error: err.message,
+              submittedURL: htmlURL,
+              submittedRenderer: renderer,
+            },
           })
         })
       break
@@ -113,9 +115,12 @@ async function generatePDF(req, res) {
         .catch((err) => {
           console.log(`generatePDF error ${err}`)
           res.status(400).send({
-            error: err.message,
-            submittedURL: htmlURL,
-            submittedRenderer: renderer,
+            errors: {
+              error: err.message,
+              submittedURL: htmlURL,
+              submittedRenderer: renderer,
+
+            },
           })
         })
       break

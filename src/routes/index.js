@@ -29,7 +29,7 @@ routes.get('/api/pdf',
 /*
  * passes an authenticated POST request to /api/pdf to the PDF controller
  */
-routes.post('/api/pdf',
+routes.post('/api/v1/pdf',
   passport.authenticate('digest', { session: false }),
   (req, res) => {
     pdfController.generatePDF(req, res)
