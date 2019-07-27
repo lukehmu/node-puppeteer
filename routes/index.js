@@ -18,7 +18,7 @@ passport.use(new Strategy({ qop: 'auth' },
   })))
 
 /**
- * unused route, should display API docs?
+ * @deprecated
  */
 routes.get('/api/pdf',
   passport.authenticate('digest', { session: false }),

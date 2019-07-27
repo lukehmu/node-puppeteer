@@ -10,7 +10,10 @@ require('dotenv').config()
 
 const pdfDir = 'pdf'
 
-/* returns a string based on the current date/time */
+/**
+ *  returns a string based on the current date/time
+ * @returns {String} fileName
+ * */
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
   return fileName
@@ -25,6 +28,7 @@ function generateTimeStampFileName() {
  *  Don't use!
  * @param {Number} width specify the width of the PDF in pixels
  * @param {Number} specify the height of the PDF pixels
+ * @returns {Buffer} buffer
  */
 async function puppeteerPDF(htmlURL, format, width, height) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
@@ -46,6 +50,7 @@ async function puppeteerPDF(htmlURL, format, width, height) {
  * No need for phantom PDF rendering
  * @param {string} htmlURL
  * @param {string} pdfFileName
+ * @deprecated
  */
 async function phantomPDF(htmlURL, pdfFileName) {
   const instance = await phantom.create()
@@ -128,6 +133,7 @@ async function generatePDF(req, res) {
  * currently not being used
  * @param {Express.Request} req
  * @param {Express.Response} res
+ * @deprecated
  */
 function getPDF(req, res) {
   const pdfQuery = req.query.pdf
