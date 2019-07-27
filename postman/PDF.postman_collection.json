@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "6bc196f5-26ef-412f-bed8-574346f4a5f4",
+		"name": "PDF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Puppeteer PDF",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "password",
+							"value": "replace me",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "replace me",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"renderer\": \"puppeteer\",\n\t\"htmlURL\": \"https://electricputty.co.uk\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pdf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

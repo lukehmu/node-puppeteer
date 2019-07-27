@@ -22,7 +22,10 @@ Format of POST:
     	"width": 200
     }
 
-You'll need to provide HTTP Digest auth details
+You'll need to provide HTTP Digest auth details.
+
+Example POStMAN request can be found in the postman directory:
+[POSTMAN file to import](postman/PDF.postman_collection.json)
 
 ## DOCS
 
