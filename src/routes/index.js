@@ -1,6 +1,6 @@
 const routes = require('express').Router()
 const passport = require('passport')
-const Strategy = require('passport-http').DigestStrategy
+const Strategy = require('passport-http').BasicStrategy
 const pdfController = require('../controllers/pdfController')
 const users = require('../db/users')
 
@@ -8,20 +8,22 @@ const users = require('../db/users')
  * using the passport-http library to implement http 'digest' authentication
  * user(s) are defined in the db/users.js and the .env file
  */
-passport.use(new Strategy({ qop: 'auth' },
-  ((username, cb) => {
+passport.use(new Strategy(
+  ((username, password, cb) => {
     users.findByUsername(username, (err, user) => {
       if (err) { return cb(err) }
       if (!user) { return cb(null, false) }
-      return cb(null, user, user.password)
+      if (user.password != password) { return cb(null, false) }
+      return cb(null, user)
     })
-  })))
+  }),
+))
 
 /*
  * @deprecated
  */
 routes.get('/api/pdf',
-  passport.authenticate('digest', { session: false }),
+  passport.authenticate('basic', { session: false }),
   (req, res) => {
     pdfController.getPDF(req, res)
   })
@@ -30,10 +32,17 @@ routes.get('/api/pdf',
  * passes an authenticated POST request to /api/pdf to the PDF controller
  */
 routes.post('/api/v1/pdf',
-  passport.authenticate('digest', { session: false }),
+  passport.authenticate('basic', { session: false }),
   (req, res) => {
     pdfController.generatePDF(req, res)
   })
+
+// /*
+//  * passes an authenticated POST request to /api/pdf to the PDF controller
+//  */
+// routes.post('/api/v1/pdf', (req, res) => {
+//   pdfController.generatePDF(req, res)
+// })
 
 
 /*

@@ -23,4 +23,7 @@ app.use('/', routes)
 // use either the port defined in the env file, else default to 3000
 const port = process.env.PORT || 3000
 
-app.listen(port, () => console.log(`Running on http://localhost:${port}`))
+const server = app.listen(port, () => console.log(`Running on http://localhost:${port}`))
+
+// make server avilable for testing
+module.exports.server = server
