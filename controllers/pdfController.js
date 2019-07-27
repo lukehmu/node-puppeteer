@@ -1,3 +1,8 @@
+/**
+ * PDF Controller
+ * @module controllers/pdfController
+ */
+
 const path = require('path')
 const puppeteer = require('puppeteer')
 const phantom = require('phantom')
@@ -5,6 +10,7 @@ require('dotenv').config()
 
 const pdfDir = 'pdf'
 
+/* returns a string based on the current date/time */
 function generateTimeStampFileName() {
   const fileName = `${Date.now().toString()}.pdf`
   return fileName
@@ -14,11 +20,11 @@ function generateTimeStampFileName() {
  * Creates a PDF for a given URL using Puppeteer and returns a binary file inside a buffer
  *
  * @async
- * @param htmlURL a public URL to the HTML you wish to convert
- * @param pdfFileName depricated
- * @param format American standard paper sizes e.g. A4, A3. Prefer to use width and height
- * @param width specify the width of the PDF
- * @param height specify the height of the PDF
+ * @param {String} htmlURL a public URL to the HTML you wish to convert
+ * @param {String} format American standard paper sizes e.g. A4, A3. Prefer to use width and height.
+ *  Don't use!
+ * @param {Number} width specify the width of the PDF in pixels
+ * @param {Number} specify the height of the PDF pixels
  */
 async function puppeteerPDF(htmlURL, format, width, height) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
@@ -35,6 +41,12 @@ async function puppeteerPDF(htmlURL, format, width, height) {
   return buffer
 }
 
+/**
+ * This function shouldn't be used
+ * No need for phantom PDF rendering
+ * @param {string} htmlURL
+ * @param {string} pdfFileName
+ */
 async function phantomPDF(htmlURL, pdfFileName) {
   const instance = await phantom.create()
   const page = await instance.createPage()
@@ -52,6 +64,12 @@ async function phantomPDF(htmlURL, pdfFileName) {
   return pdfFileName
 }
 
+/**
+ * picks up the JSON posted from the API and
+ * triggers rendering the PDF via the specified renderer
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
 async function generatePDF(req, res) {
   const pdfFileName = generateTimeStampFileName()
   const { body } = req
@@ -60,18 +78,6 @@ async function generatePDF(req, res) {
   const { width } = body
   const { height } = body
   const { renderer } = body
-  if (!body.apiKey) {
-    console.log('Invalid API KEY')
-    res.status(403).json({
-      message: 'No API key provided',
-    })
-  } else if (body.apiKey !== process.env.APIKEY) {
-    console.log(body.apiKey)
-    console.log(process.env.APIKEY)
-    res.status(403).json({
-      message: 'Invalid API KEY',
-    })
-  }
   switch (renderer) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, format, width, height)
@@ -118,6 +124,11 @@ async function generatePDF(req, res) {
   return pdfFileName
 }
 
+/**
+ * currently not being used
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
 function getPDF(req, res) {
   const pdfQuery = req.query.pdf
   if (pdfQuery) {
