@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev-server": "nodemon ./app.js",
+    "dev-server": "nodemon ./src/app.js",
     "prod-server": "nodemon ./dist/server.js",
     "build": "rm -rf dist && webpack-cli --mode development"
   },
