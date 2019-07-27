@@ -1,5 +1,5 @@
 /**
- * PDF Controller
+ * PDF Controller handles generating PDFs
  * @module controllers/pdfController
  */
 
@@ -27,7 +27,7 @@ function generateTimeStampFileName() {
  * @param {String} format American standard paper sizes e.g. A4, A3. Prefer to use width and height.
  *  Don't use!
  * @param {Number} width specify the width of the PDF in pixels
- * @param {Number} specify the height of the PDF pixels
+ * @param {Number} height specify the height of the PDF pixels
  * @returns {Buffer} buffer
  */
 async function puppeteerPDF(htmlURL, format, width, height) {
