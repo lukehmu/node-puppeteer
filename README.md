@@ -1,7 +1,7 @@
 Express API that will use Puppteer to create a PDF for a given URL
 
 -   Clone the repo
--   Rename `.env.example` to `.env` and add in API user & key
+-   Rename [.env.example](`.env.example`) to `.env` and add in API user & key
 -   run `npm install`
 
 ## Running the server
@@ -22,10 +22,14 @@ Format of POST:
     	"width": 200
     }
 
-You'll need to provide HTTP Digest auth details.
+You'll need to provide HTTP basic auth details.
 
-Example POStMAN request can be found in the postman directory:
+Example POSTMAN request can be found in the postman directory:
 [POSTMAN file to import](postman/PDF.postman_collection.json)
+
+## Testing
+
+Testing implemented using [supertest](https://github.com/visionmedia/supertest) & [mocha](https://github.com/mochajs/mocha), run using `npm test`
 
 ## DOCS
 

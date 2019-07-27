@@ -9,21 +9,16 @@
 			"name": "Puppeteer PDF",
 			"request": {
 				"auth": {
-					"type": "digest",
-					"digest": [
+					"type": "basic",
+					"basic": [
 						{
 							"key": "password",
-							"value": "replace me",
+							"value": "change me",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "replace me",
-							"type": "string"
-						},
-						{
-							"key": "algorithm",
-							"value": "MD5",
+							"value": "change me",
 							"type": "string"
 						}
 					]
@@ -39,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"renderer\": \"puppeteer\",\n\t\"htmlURL\": \"https://electricputty.co.uk\"\n}"
+					"raw": "{\n    \"renderer\": \"puppeteer\",\n    \"htmlURL\": \"https://www.googl\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/pdf",
