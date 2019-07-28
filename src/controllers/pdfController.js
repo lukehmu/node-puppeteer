@@ -24,24 +24,22 @@ function generateTimeStampFileName() {
  *
  * @async
  * @param {String} htmlURL a public URL to the HTML you wish to convert
- * @param {String} format American standard paper sizes e.g. A4, A3. Prefer to use width and height.
- *  Don't use!
  * @param {Number} width specify the width of the PDF in pixels
  * @param {Number} height specify the height of the PDF pixels
  * @returns {Buffer} buffer
  */
-async function puppeteerPDF(htmlURL, format, width, height) {
+async function puppeteerPDF(htmlURL, pdfOptions = { width: 595, height: 842 }) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
+  console.log(pdfOptions.width)
+  console.log(htmlURL)
   const buffer = await page.pdf({
-    // path: pdfFileName,
-    format,
     printBackground: true,
-    width,
-    height,
+    width: pdfOptions.width,
+    height: pdfOptions.height,
   })
-  await console.log('Puppeteer PDF created')
+  // await console.log('Puppeteer PDF created')
   return buffer
 }
 
@@ -79,20 +77,18 @@ async function generatePDF(req, res) {
   const pdfFileName = generateTimeStampFileName()
   const { body } = req
   const { htmlURL } = body
-  const { format } = body
-  const { width } = body
-  const { height } = body
   const { renderer } = body
+  const { pdfOptions } = body
   switch (renderer) {
     case 'puppeteer':
-      await puppeteerPDF(htmlURL, format, width, height)
+      await puppeteerPDF(htmlURL, pdfOptions)
         .then((pdf) => {
-          console.log('PDF Promise fulfilled')
+          // console.log('PDF Promise fulfilled')
           // res.sendFile(pdf)
           // res.setHeader()
           res.set('Content-Type', 'application/pdf')
           res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`)
-          res.status(201).send(Buffer.from(pdf.toString(), 'binary'))
+          res.status(201).send(Buffer.from(pdf, 'binary'))
           // res.attachment(pdf)
         })
         .catch((err) => {

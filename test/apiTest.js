@@ -16,6 +16,10 @@ describe('POST /api/v1/pdf', () => {
     .send({
       renderer: 'puppeteer',
       htmlURL: 'https://www.google.co.uk',
+      pdfOptions: {
+        width: '595',
+        height: '842',
+      },
     })
     .auth(process.env.APIUSER, process.env.APIKEY)
     .set('Accept', 'application/pdf')
