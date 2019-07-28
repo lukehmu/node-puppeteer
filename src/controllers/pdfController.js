@@ -92,14 +92,8 @@ async function generatePDF(req, res) {
           // res.attachment(pdf)
         })
         .catch((err) => {
-          console.log(`generatePDF error ${err}`)
-          res.status(400).send({
-            errors: {
-              error: err.message,
-              submittedURL: htmlURL,
-              submittedRenderer: renderer,
-            },
-          })
+          // @todo create custom Error
+          throw new Error(err)
         })
       break
     case 'phantom':
@@ -144,8 +138,10 @@ function getPDF(req, res) {
     res.sendFile(path.join(pdfDir, pdfQuery), (err) => {
       if (err) {
         res.status(404).json({
-          message: 'Cannot find your file',
-          suppliedFilename: pdfQuery,
+          errors: {
+            message: 'Cannot find your file',
+            suppliedFilename: pdfQuery,
+          },
         })
       }
     })

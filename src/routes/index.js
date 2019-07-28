@@ -33,17 +33,10 @@ routes.get('/api/pdf',
  */
 routes.post('/api/v1/pdf',
   passport.authenticate('basic', { session: false }),
-  (req, res) => {
-    pdfController.generatePDF(req, res)
+  (req, res, next) => {
+    // passing `next` to `catch` triggers the error handling middleware
+    pdfController.generatePDF(req, res).catch(next)
   })
-
-// /*
-//  * passes an authenticated POST request to /api/pdf to the PDF controller
-//  */
-// routes.post('/api/v1/pdf', (req, res) => {
-//   pdfController.generatePDF(req, res)
-// })
-
 
 /*
  * all other GET requests are returned as 404s
