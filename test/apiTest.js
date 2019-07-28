@@ -3,6 +3,23 @@ const { describe, it } = require('mocha')
 const app = require('../src/app')
 require('dotenv').config()
 
+const successRequestJSON = {
+  renderer: 'puppeteer',
+  htmlURL: 'https://www.google.co.uk',
+  pdfOptions: {
+    width: '595',
+    height: '842',
+  },
+}
+
+const failNoRendererRequestJson = {
+  renderer: '',
+  htmlURL: 'https://www.google.co.uk',
+  pdfOptions: {
+    width: '595',
+    height: '842',
+  },
+}
 
 // const { describe } = mocha
 // const { it } = mocha
@@ -13,14 +30,7 @@ require('dotenv').config()
 describe('POST /api/v1/pdf', () => {
   it('respond with a binary file (pdf)', async () => testRequest(app.server)
     .post('/api/v1/pdf')
-    .send({
-      renderer: 'puppeteer',
-      htmlURL: 'https://www.google.co.uk',
-      pdfOptions: {
-        width: '595',
-        height: '842',
-      },
-    })
+    .send(successRequestJSON)
     .auth(process.env.APIUSER, process.env.APIKEY)
     .set('Accept', 'application/pdf')
     .expect('Content-Type', /pdf/)
@@ -34,28 +44,24 @@ describe('POST /api/v1/pdf', () => {
   /**
    * testing the no renderer error reponse
    */
-  it('respond with incorrect renderer defined', async () => {
-    const htmlURL = 'https://www.google.co.uk'
-    return testRequest(app.server)
-      .post('/api/v1/pdf')
-      .send({
-        htmlURL,
-      })
-      .auth(process.env.APIUSER, process.env.APIKEY)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(400, {
-        errors: {
-          error: 'No renderer found',
-          submittedURL: htmlURL,
-        },
-      })
-      .then((res) => {
-        if (res.status !== 400) {
-          console.log(`Expecting http status 400 but got: ${res.status}`)
-        }
-      })
-  })
+  it('respond with incorrect renderer defined', async () => testRequest(app.server)
+    .post('/api/v1/pdf')
+    .send(failNoRendererRequestJson)
+    .auth(process.env.APIUSER, process.env.APIKEY)
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(400, {
+      errors: {
+        status: 400,
+        message: 'No renderer found',
+        originalRequest: failNoRendererRequestJson,
+      },
+    })
+    .then((res) => {
+      if (res.status !== 400) {
+        console.log(`Expecting http status 400 but got: ${res.status}`)
+      }
+    }))
 
   /**
    * testing PDF generation error response

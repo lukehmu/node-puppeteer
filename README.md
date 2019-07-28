@@ -16,11 +16,12 @@ POST to:
 Format of POST:
 
     {
-    	"renderer": "puppeteer",
-    	"htmlURL": "https://www.google.co.uk",
-    	"height": 400,
-    	"width": 200
-    }
+        "renderer": "puppeteer",
+        "htmlURL": "http://www.google.co.uk",
+        "pdfOptions" : {
+            "width": "595",
+            "height": "842"
+	}
 
 You'll need to provide HTTP basic auth details.
 
@@ -81,8 +82,8 @@ No need for phantom PDF rendering
 
 #### Parameters
 
--   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
+-   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
 **Meta**
 
@@ -96,8 +97,8 @@ triggers rendering the PDF via the specified renderer
 
 #### Parameters
 
--   `req` **Express.Request** 
--   `res` **Express.Response** 
+-   `req` **Express.Request**
+-   `res` **Express.Response**
 
 ### getPDF
 
@@ -105,8 +106,8 @@ currently not being used
 
 #### Parameters
 
--   `req` **Express.Request** 
--   `res` **Express.Response** 
+-   `req` **Express.Request**
+-   `res` **Express.Response**
 
 **Meta**
 
