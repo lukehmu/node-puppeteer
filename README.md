@@ -68,10 +68,9 @@ Creates a PDF for a given URL using Puppeteer and returns a binary file inside a
 #### Parameters
 
 -   `htmlURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a public URL to the HTML you wish to convert
--   `format` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** American standard paper sizes e.g. A4, A3. Prefer to use width and height.
-     Don't use!
--   `width` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the width of the PDF in pixels
--   `height` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the height of the PDF pixels
+-   `pdfOptions` **Onject** optional settings for PDF generation (optional, default `{width:595,height:842}`)
+    -   `pdfOptions.width` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the width of the PDF in pixels
+    -   `pdfOptions.height` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the height of the PDF pixels
 
 Returns **[Buffer](https://nodejs.org/api/buffer.html)** buffer
 
@@ -82,8 +81,8 @@ No need for phantom PDF rendering
 
 #### Parameters
 
--   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
--   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
+-   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 **Meta**
 
@@ -97,8 +96,8 @@ triggers rendering the PDF via the specified renderer
 
 #### Parameters
 
--   `req` **Express.Request**
--   `res` **Express.Response**
+-   `req` **Express.Request** 
+-   `res` **Express.Response** 
 
 ### getPDF
 
@@ -106,8 +105,8 @@ currently not being used
 
 #### Parameters
 
--   `req` **Express.Request**
--   `res` **Express.Response**
+-   `req` **Express.Request** 
+-   `res` **Express.Response** 
 
 **Meta**
 

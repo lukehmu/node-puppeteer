@@ -24,8 +24,10 @@ function generateTimeStampFileName() {
  *
  * @async
  * @param {String} htmlURL a public URL to the HTML you wish to convert
- * @param {Number} width specify the width of the PDF in pixels
- * @param {Number} height specify the height of the PDF pixels
+ * @param {Onject} pdfOptions optional settings for PDF generation
+ * @param {Number} pdfOptions.width specify the width of the PDF in pixels
+ * @param {Number} pdfOptions.height specify the height of the PDF pixels
+ *
  * @returns {Buffer} buffer
  */
 async function puppeteerPDF(htmlURL, pdfOptions = { width: 595, height: 842 }) {
