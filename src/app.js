@@ -22,7 +22,7 @@ app.use('/', routes)
 // error handler middleware
 // @todo refactor to use separate function in errorController.js
 app.use((err, req, res, next) => {
-  console.error(`NEXT ERROR: ${err}`)
+  console.error(`Middleware error from Express: ${err}`)
   res.status(400).send({
     errors:
     {

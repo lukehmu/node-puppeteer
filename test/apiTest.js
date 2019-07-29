@@ -7,8 +7,8 @@ const successRequestJSON = {
   renderer: 'puppeteer',
   htmlURL: 'https://www.google.co.uk',
   pdfOptions: {
-    width: '595',
-    height: '842',
+    width: 595,
+    height: 842,
   },
 }
 
@@ -16,8 +16,8 @@ const failNoRendererRequestJson = {
   renderer: '',
   htmlURL: 'https://www.google.co.uk',
   pdfOptions: {
-    width: '595',
-    height: '842',
+    width: 595,
+    height: 842,
   },
 }
 
@@ -53,7 +53,7 @@ describe('POST /api/v1/pdf', () => {
     .expect(400, {
       errors: {
         status: 400,
-        message: 'No renderer found',
+        message: 'ValidationError: child "renderer" fails because ["renderer" is not allowed to be empty]',
         originalRequest: failNoRendererRequestJson,
       },
     })

@@ -1,6 +1,7 @@
 const routes = require('express').Router()
 const passport = require('passport')
 const Strategy = require('passport-http').BasicStrategy
+const Joi = require('@hapi/joi')
 const pdfController = require('../controllers/pdfController')
 const users = require('../db/users')
 
@@ -19,6 +20,15 @@ passport.use(new Strategy(
   }),
 ))
 
+const requestSchema = Joi.object().keys({
+  renderer: Joi.string().alphanum().required(),
+  htmlURL: Joi.string().uri().required(),
+  pdfOptions: Joi.object().keys({
+    width: Joi.number().max(5000).positive().optional(),
+    height: Joi.number().max(5000).positive().optional(),
+  }),
+})
+
 /*
  * @deprecated
  */
@@ -34,7 +44,12 @@ routes.get('/api/pdf',
 routes.post('/api/v1/pdf',
   passport.authenticate('basic', { session: false }),
   (req, res, next) => {
+    // validating the request against the schema
+    requestSchema.validate(req.body, (err, value) => {
+      if (err !== null) { throw new Error(err) }
+    })
     // passing `next` to `catch` triggers the error handling middleware
+    // in app.js
     pdfController.generatePDF(req, res).catch(next)
   })
 
