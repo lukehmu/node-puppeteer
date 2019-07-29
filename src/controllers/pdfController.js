@@ -24,7 +24,7 @@ function generateTimeStampFileName() {
  *
  * @async
  * @param {String} htmlURL a public URL to the HTML you wish to convert
- * @param {Onject} pdfOptions optional settings for PDF generation
+ * @param {Object} pdfOptions optional settings for PDF generation
  * @param {Number} pdfOptions.width specify the width of the PDF in pixels
  * @param {Number} pdfOptions.height specify the height of the PDF pixels
  *
@@ -34,8 +34,7 @@ async function puppeteerPDF(htmlURL, pdfOptions = { width: 595, height: 842 }) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlURL)
-  console.log(pdfOptions.width)
-  console.log(htmlURL)
+  console.log(`Generating PDF for ${htmlURL}`)
   const buffer = await page.pdf({
     printBackground: true,
     width: pdfOptions.width,
@@ -77,10 +76,9 @@ async function phantomPDF(htmlURL, pdfFileName) {
  */
 async function generatePDF(req, res) {
   const pdfFileName = generateTimeStampFileName()
-  const { body } = req
-  const { htmlURL } = body
-  const { renderer } = body
-  const { pdfOptions } = body
+  // fancy but unnecessary object deconstruction - as we don't ever need
+  // body to be an available variable, this saves us a whole 1 line
+  const { body: { htmlURL, renderer, pdfOptions } } = req
   switch (renderer) {
     case 'puppeteer':
       await puppeteerPDF(htmlURL, pdfOptions)
