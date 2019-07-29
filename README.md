@@ -21,6 +21,7 @@ Format of POST:
         "pdfOptions" : {
             "width": "595",
             "height": "842"
+        }
 	}
 
 You'll need to provide HTTP basic auth details.
