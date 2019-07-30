@@ -1,7 +1,7 @@
 Express API that will use Puppteer to create a PDF for a given URL
 
 -   Clone the repo
--   Rename [.env.example](`.env.example`) to `.env` and add in API user & key
+-   Rename [.env.example](.env.example) to `.env` and add in API user & key
 -   run `npm install`
 
 ## Running the server
