@@ -11,7 +11,7 @@
         "no-console": "off",
         "linebreak-style": [0, "error", "windows"],
         //fixes an issue with Express
-        "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
+        "no-unused-vars": ["error", { "argsIgnorePattern": "next|value" }]
     },
     "parserOptions": {
         "sourceType": "module"

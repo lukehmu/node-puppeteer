@@ -26,7 +26,7 @@ const requestSchema = Joi.object().keys({
   pdfOptions: Joi.object().keys({
     width: Joi.number().max(5000).positive().optional(),
     height: Joi.number().max(5000).positive().optional(),
-  }),
+  }).and('width', 'height'),
 })
 
 /*
