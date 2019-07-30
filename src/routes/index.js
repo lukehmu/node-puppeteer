@@ -1,25 +1,8 @@
 const routes = require('express').Router()
-const Joi = require('@hapi/joi')
+// const Joi = require('@hapi/joi')
 const pdfController = require('../controllers/pdfController')
 const passport = require('../config/auth')
-
-const requestSchema = Joi.object().keys({
-  renderer: Joi.string().alphanum().required(),
-  htmlURL: Joi.string().uri().required(),
-  pdfOptions: Joi.object().keys({
-    width: Joi.number().max(5000).positive().optional(),
-    height: Joi.number().max(5000).positive().optional(),
-  }).and('width', 'height'),
-})
-
-/*
- * @deprecated
- */
-routes.get('/api/pdf',
-  passport.authenticate('basic', { session: false }),
-  (req, res) => {
-    pdfController.getPDF(req, res)
-  })
+const requestSchema = require('../schemas/requestSchema')
 
 /*
  * passes an authenticated POST request to /api/pdf to the PDF controller

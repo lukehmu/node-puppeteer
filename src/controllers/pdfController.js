@@ -3,12 +3,9 @@
  * @module controllers/pdfController
  */
 
-const path = require('path')
 const puppeteer = require('puppeteer')
 const phantom = require('phantom')
 require('dotenv').config()
-
-const pdfDir = 'pdf'
 
 /**
  *  returns a string based on the current date/time
@@ -120,29 +117,4 @@ async function generatePDF(req, res) {
   return pdfFileName
 }
 
-/**
- * currently not being used
- * @param {Express.Request} req
- * @param {Express.Response} res
- * @deprecated
- */
-function getPDF(req, res) {
-  const pdfQuery = req.query.pdf
-  if (pdfQuery) {
-    res.sendFile(path.join(pdfDir, pdfQuery), (err) => {
-      if (err) {
-        res.status(404).json({
-          errors: {
-            message: 'Cannot find your file',
-            suppliedFilename: pdfQuery,
-          },
-        })
-      }
-    })
-  } else {
-    res.status(400).json({ message: 'Please use ?pdf=filename to retrieve a PDF' })
-  }
-}
-
 module.exports.generatePDF = generatePDF
-module.exports.getPDF = getPDF
