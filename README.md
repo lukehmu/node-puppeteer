@@ -70,7 +70,7 @@ Creates a PDF for a given URL using Puppeteer and returns a binary file inside a
 #### Parameters
 
 -   `htmlURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a public URL to the HTML you wish to convert
--   `pdfOptions` **Onject** optional settings for PDF generation (optional, default `{width:595,height:842}`)
+-   `pdfOptions` **Object** optional settings for PDF generation (optional, default `{width:595,height:842}`)
     -   `pdfOptions.width` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the width of the PDF in pixels
     -   `pdfOptions.height` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** specify the height of the PDF pixels
 
