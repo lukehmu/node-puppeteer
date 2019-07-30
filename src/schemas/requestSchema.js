@@ -1,14 +1,15 @@
-/*
+/**
  * schemas/requestSchema.js
  * Example valid JSON for requestSchema
 {
-    "renderer": "puppeteer",
-    "htmlURL": "http://www.google.co.uk",
-    "pdfOptions" : {
+  "renderer": "puppeteer",
+  "htmlURL": "http://www.google.co.uk",
+  "pdfOptions" : {
     "width": 100,
     "height": 100
-    }
+  }
 }
+ * @module schemas/requestSchema
  */
 
 const Joi = require('@hapi/joi')

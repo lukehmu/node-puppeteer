@@ -11,7 +11,8 @@
     "start": "node ./dist/app.js",
     "dev-server": "nodemon ./src/app.js",
     "prod-server": "nodemon ./dist/server.js",
-    "build": "rm -rf dist && webpack-cli --mode development"
+    "build": "rm -rf dist && webpack-cli --mode development",
+    "docs": "documentation build src/** -f html -o src/views/apidocs"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "phantom": "^6.2.0",
+    "pug": "^2.0.4",
     "puppeteer": "^1.19.0"
   },
   "devDependencies": {

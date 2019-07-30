@@ -1,0 +1,774 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>post 1.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' rel='stylesheet'>
+  <link href='assets/style.css' rel='stylesheet'>
+  <link href='assets/github.css' rel='stylesheet'>
+  <link href='assets/split.css' rel='stylesheet'>
+</head>
+<body class='documentation m0'>
+    <div class='flex'>
+      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>post</h3>
+          <div class='mb1'><code>1.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#configauth'
+                  class="">
+                  config/auth
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#configusers'
+                  class="">
+                  config/users
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#findbyusername'
+                  class="">
+                  findByUsername
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#controllerserrorcontroller'
+                  class="">
+                  controllers/errorController
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#controllerspdfcontroller'
+                  class="">
+                  controllers/pdfController
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#generatetimestampfilename'
+                  class="">
+                  generateTimeStampFileName
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#puppeteerpdf'
+                  class="">
+                  puppeteerPDF
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#phantompdf'
+                  class="">
+                  phantomPDF
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#generatepdf'
+                  class="">
+                  generatePDF
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#schemasrequestschema'
+                  class="">
+                  schemas/requestSchema
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='configauth'>
+      config/auth
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Auth module
+Passport auth related functionality</p>
+
+    <div class='pre p1 fill-light mt0'>config/auth</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='configusers'>
+      config/users
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Users db module</p>
+
+    <div class='pre p1 fill-light mt0'>config/users</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='findbyusername'>
+      findByUsername
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>searches the users object to match the username sent via the http request</p>
+
+    <div class='pre p1 fill-light mt0'>findByUsername</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>username</span> <code class='quiet'>(any)</code>
+	    the username sent from the http auth
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>cb</span> <code class='quiet'>(any)</code>
+	    unsure what this does - the perils of copying code off the
+internet - assume this is a callback function?
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='controllerserrorcontroller'>
+      controllers/errorController
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Error Controller handles sending errors back to the client</p>
+
+    <div class='pre p1 fill-light mt0'>controllers/errorController</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='controllerspdfcontroller'>
+      controllers/pdfController
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>PDF Controller handles generating PDFs</p>
+
+    <div class='pre p1 fill-light mt0'>controllers/pdfController</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='generatetimestampfilename'>
+      generateTimeStampFileName
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>returns a string based on the current date/time</p>
+
+    <div class='pre p1 fill-light mt0'>generateTimeStampFileName(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+        fileName
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='puppeteerpdf'>
+      puppeteerPDF
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Creates a PDF for a given URL using Puppeteer and returns a binary file inside a buffer</p>
+
+    <div class='pre p1 fill-light mt0'>puppeteerPDF(htmlURL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, pdfOptions: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://nodejs.org/api/buffer.html">Buffer</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>htmlURL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    a public URL to the HTML you wish to convert
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pdfOptions</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{width:595,height:842}</code>)</code>
+	    optional settings for PDF generation
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>pdfOptions.width</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  </td>
+  <td class='break-word'><span>specify the width of the PDF in pixels
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>pdfOptions.height</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  </td>
+  <td class='break-word'><span>specify the height of the PDF pixels
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://nodejs.org/api/buffer.html">Buffer</a></code>:
+        buffer
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='phantompdf'>
+      phantomPDF
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This function shouldn't be used
+No need for phantom PDF rendering</p>
+
+    <div class='pre p1 fill-light mt0'>phantomPDF(htmlURL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, pdfFileName: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  <div>Deprecated: This is deprecated.
+</div>
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>htmlURL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pdfFileName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='generatepdf'>
+      generatePDF
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>picks up the JSON posted from the API and
+triggers rendering the PDF via the specified renderer</p>
+
+    <div class='pre p1 fill-light mt0'>generatePDF(req: Express.Request, res: Express.Response)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(Express.Request)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(Express.Response)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='schemasrequestschema'>
+      schemas/requestSchema
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>schemas/requestSchema.js
+Example valid JSON for requestSchema
+{
+"renderer": "puppeteer",
+"htmlURL": "<a href="http://www.google.co.uk%22">http://www.google.co.uk"</a>,
+"pdfOptions" : {
+"width": 100,
+"height": 100
+}
+}</p>
+
+    <div class='pre p1 fill-light mt0'>schemas/requestSchema</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/split.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

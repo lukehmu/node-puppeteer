@@ -20,6 +20,13 @@ routes.post('/api/v1/pdf',
   })
 
 /*
+ * api docs
+ */
+routes.get('/docs', (req, res) => {
+  res.render('apidocs/index')
+})
+
+/*
  * all other GET requests are returned as 404s
  */
 routes.get('*', (req, res) => {

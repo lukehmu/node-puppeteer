@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 const routes = require('./routes')
 const { errorHandler } = require('./controllers/errorController')
 
@@ -16,9 +17,16 @@ app.use(
   }),
 )
 
+// serve API docs
+app.use('/apidocs', express.static(path.join(__dirname, '/views/apidocs')))
+
 // reference our router index
 app.use('/', routes)
 
+// app.set('view engine', 'pug')
+
+
+console.log(path.join(__dirname, '/views/apidocs'))
 
 // error handler middleware
 app.use((err, req, res, next) => {
