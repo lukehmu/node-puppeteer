@@ -21,9 +21,6 @@ const failNoRendererRequestJson = {
   },
 }
 
-// const { describe } = mocha
-// const { it } = mocha
-
 /**
  * testing PDF is generated for google.co.uk
  */
