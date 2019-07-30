@@ -12,6 +12,7 @@ notifications:
 cache:
   directories:
     - node_modules
+  npm
 # allow headful tests
 before_install:
   # Enable user namespace cloning

@@ -30,6 +30,7 @@ Example POSTMAN request can be found in the postman directory:
 [POSTMAN file to import](postman/PDF.postman_collection.json)
 
 ## Testing
+[![Build Status](https://travis-ci.org/lukehmu/node-puppeteer.svg?branch=master)](https://travis-ci.org/lukehmu/node-puppeteer)
 
 Testing implemented using [supertest](https://github.com/visionmedia/supertest) & [mocha](https://github.com/mochajs/mocha), run using `npm test`
 
