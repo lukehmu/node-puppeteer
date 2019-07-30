@@ -1,21 +1,21 @@
 /**
  * Error Controller handles sending errors back to the client
  * @module controllers/errorController
- * Currently unused
  */
 
 // const { RequestError } = require('./lib/errors')
 
 
-function handleError(err, req, res) {
-  console.log(`body: ${req.body.status}`)
-  res.status(req.status).json({
-    error: {
+function errorHandler(err, req, res) {
+  res.status(400).json({
+    errors:
+    {
+      status: 400,
       message: err.message,
-      submittedURL: req.body.htmlURL,
+      originalRequest: req.body,
     },
   })
 }
 
 
-module.exports = handleError
+module.exports.errorHandler = errorHandler

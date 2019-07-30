@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
+const { errorHandler } = require('./controllers/errorController')
 
 // create the express app
 
@@ -20,17 +21,9 @@ app.use('/', routes)
 
 
 // error handler middleware
-// @todo refactor to use separate function in errorController.js
 app.use((err, req, res, next) => {
   console.error(`Middleware error from Express: ${err}`)
-  res.status(400).send({
-    errors:
-    {
-      status: 400,
-      message: err.message,
-      originalRequest: req.body,
-    },
-  })
+  errorHandler(err, req, res)
 })
 
 // use either the port defined in the env file, else default to 3000

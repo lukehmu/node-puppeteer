@@ -3,7 +3,7 @@
  * @todo this needs refactoring as it's a little overkill for a single
  * API key e.g. we don't need the findByUsername() function, as we only have
  * 1 API user!
- * @module db/users
+ * @module config/users
  */
 
 const users = [
