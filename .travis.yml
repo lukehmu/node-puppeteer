@@ -3,7 +3,6 @@ node_js:
   - "8"
 
 before_script:
-  - npm i -g supertest
-  - npm i -g mocha
+  - npm i
   - npm test
   - npm run build
