@@ -10,9 +10,9 @@ addons:
 notifications:
   email: false
 cache:
+  npm: true
   directories:
     - node_modules
-  npm
 # allow headful tests
 before_install:
   # Enable user namespace cloning
