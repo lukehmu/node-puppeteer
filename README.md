@@ -11,7 +11,7 @@ Express API that will use Puppteer to create a PDF for a given URL
 ## Using the API
 
 POST to:
-`/api/pdf`
+`/api/v1/pdf`
 
 Format of POST:
 
@@ -87,8 +87,8 @@ No need for phantom PDF rendering
 
 #### Parameters
 
--   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `htmlURL` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
+-   `pdfFileName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
 **Meta**
 
@@ -102,8 +102,8 @@ triggers rendering the PDF via the specified renderer
 
 #### Parameters
 
--   `req` **Express.Request** 
--   `res` **Express.Response** 
+-   `req` **Express.Request**
+-   `res` **Express.Response**
 
 ### config/auth
 
