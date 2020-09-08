@@ -5,7 +5,6 @@
 
 // const { RequestError } = require('./lib/errors')
 
-
 function errorHandler(err, req, res) {
   res.status(400).json({
     errors:
@@ -16,6 +15,5 @@ function errorHandler(err, req, res) {
     },
   })
 }
-
 
 module.exports.errorHandler = errorHandler

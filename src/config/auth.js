@@ -6,7 +6,7 @@
 
 const passport = require('passport')
 const Strategy = require('passport-http').BasicStrategy
-const users = require('../config/users')
+const users = require('./users')
 
 /*
  * using the passport-http library to implement http 'digest' authentication

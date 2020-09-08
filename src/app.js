@@ -8,7 +8,6 @@ const { errorHandler } = require('./controllers/errorController')
 
 const app = express()
 
-
 // bodyParser creates an accessible `body` object on the `request` object
 app.use(bodyParser.json())
 app.use(
@@ -24,7 +23,6 @@ app.use('/apidocs', express.static(path.join(__dirname, '/views/apidocs')))
 app.use('/', routes)
 
 // app.set('view engine', 'pug')
-
 
 console.log(path.join(__dirname, '/views/apidocs'))
 
