@@ -13,15 +13,17 @@
  * @module schemas/requestSchema
  */
 
-const Joi = require('@hapi/joi')
+const Joi = require('@hapi/joi');
 
 const requestSchema = Joi.object().keys({
   renderer: Joi.string().alphanum().required(),
   htmlURL: Joi.string().uri().required(),
-  pdfOptions: Joi.object().keys({
-    width: Joi.number().max(5000).positive().optional(),
-    height: Joi.number().max(5000).positive().optional(),
-  }).and('width', 'height'),
-})
+  pdfOptions: Joi.object()
+    .keys({
+      width: Joi.number().max(5000).positive().optional(),
+      height: Joi.number().max(5000).positive().optional(),
+    })
+    .and('width', 'height'),
+});
 
-module.exports = requestSchema
+module.exports = requestSchema;

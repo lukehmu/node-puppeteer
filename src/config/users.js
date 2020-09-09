@@ -8,9 +8,11 @@
 
 const users = [
   {
-    id: 1, username: process.env.APIUSER, password: process.env.APIKEY,
+    id: 1,
+    username: process.env.APIUSER,
+    password: process.env.APIKEY,
   },
-]
+];
 
 /**
  * searches the users object to match the username sent via the http request
@@ -21,12 +23,12 @@ const users = [
 const findByUsername = (username, cb) => {
   process.nextTick(() => {
     for (let i = 0, len = users.length; i < len; i += 1) {
-      const user = users[i]
+      const user = users[i];
       if (user.username === username) {
-        return cb(null, user)
+        return cb(null, user);
       }
     }
-    return cb(null, null)
-  })
-}
-module.exports.findByUsername = findByUsername
+    return cb(null, null);
+  });
+};
+module.exports.findByUsername = findByUsername;

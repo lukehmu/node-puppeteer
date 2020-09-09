@@ -7,13 +7,12 @@
 
 function errorHandler(err, req, res) {
   res.status(400).json({
-    errors:
-    {
+    errors: {
       status: 400,
       message: err.message,
       originalRequest: req.body,
     },
-  })
+  });
 }
 
-module.exports.errorHandler = errorHandler
+module.exports.errorHandler = errorHandler;
