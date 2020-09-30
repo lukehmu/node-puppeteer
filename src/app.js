@@ -24,7 +24,7 @@ app.use('/', routes);
 
 // app.set('view engine', 'pug')
 
-console.log(path.join(__dirname, '/views/apidocs'));
+// console.log(path.join(__dirname, '/views/apidocs'));
 
 // error handler middleware
 app.use((err, req, res, next) => {

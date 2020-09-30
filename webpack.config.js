@@ -1,7 +1,7 @@
-const path = require('path')
+const path = require('path');
 // const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
+const nodeExternals = require('webpack-node-externals');
+// const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -35,11 +35,11 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './index.html',
-      filename: './index.html',
-      // excludeChunks: ['server'],
-    }),
-  ],
-}
+  //   plugins: [
+  //     new HtmlWebPackPlugin({
+  //       template: './index.html',
+  //       filename: './index.html',
+  //       // excludeChunks: ['server'],
+  //     }),
+  //   ],
+};

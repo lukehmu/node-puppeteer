@@ -26,9 +26,9 @@ routes.post(
 /*
  * api docs
  */
-routes.get('/docs', (req, res) => {
-  res.render('apidocs/index');
-});
+// routes.get('/apidocs', (req, res) => {
+//   res.render('apidocs/index');
+// });
 
 /*
  * all other GET requests are returned as 404s
