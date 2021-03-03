@@ -27,7 +27,7 @@
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "phantom": "^6.3.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "puppeteer": "^5.2.1"
   },
   "devDependencies": {
